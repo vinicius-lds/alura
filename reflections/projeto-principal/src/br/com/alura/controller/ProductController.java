@@ -11,4 +11,11 @@ public class ProductController {
         return "Returned items: {1}; {2};";
     }
 
+    public String listAndReturn(String nome, String valor) throws Exception {
+        if (true) {
+            throw new Exception("Unexpected excpetion");
+        }
+        return "Returned items: {1}; {2};";
+    }
+
 }

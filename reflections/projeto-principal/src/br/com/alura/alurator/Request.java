@@ -1,13 +1,16 @@
 package br.com.alura.alurator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Request {
 
     private String url;
     private String controllerClassName;
     private String methodName;
+    private Map<String, Object> keyValueParams = new HashMap<>();
 
     public Request(String url) {
         setUrl(url);
@@ -41,6 +44,11 @@ public class Request {
 
     public void setMethodName(String methodName) {
         this.methodName = methodName;
+    }
+
+    public Map<String, Object> getParams() {
+        processRequestIfNeeded();
+        return this.keyValueParams;
     }
 
     private boolean isRequestProcessed() {
@@ -103,12 +111,15 @@ public class Request {
             var namedParamsSplit = namedParamsSplit(namesParams);
             for (String namedParam : namedParamsSplit) {
                 var keyValueParam = keyValueParamSplit(namedParam);
+                String key = null;
+                Object value = null;
                 if (keyValueParam.length > 0) {
-                    list.add(keyValueParam[0]);
+                    key = keyValueParam[0];
                 }
                 if (keyValueParam.length > 1) {
-                    list.add(keyValueParam[1]);
+                    value = keyValueParam[1];
                 }
+                keyValueParams.put(key, value);
             }
         }
         return list;

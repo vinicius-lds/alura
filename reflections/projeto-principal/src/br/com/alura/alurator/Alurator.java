@@ -15,7 +15,11 @@ public class Alurator {
         var clazz = Class.forName(ReflectionUtils.buildFullyQualifiedName(basePackage, request.getControllerClassName()));
         var classManipulator = ClassManipulator.of(clazz);
         var object = classManipulator.getDefaultConstructor().invoke();
-        var returnFromMethod = MethodManipulator.of(classManipulator.getMethod(request.getMethodName())).setObject(object).invoke();
+        var returnFromMethod = MethodManipulator.of(classManipulator.getMethod(request.getMethodName(), request.getParams()))
+                .withParams(request.getParams())
+                .withObject(object)
+                .withCatchClause((method, ex) -> System.out.println(method + "; " + ex))
+                .invoke();
         System.out.println(returnFromMethod);
         return null;
     }
