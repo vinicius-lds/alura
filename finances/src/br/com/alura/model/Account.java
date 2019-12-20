@@ -1,9 +1,7 @@
 package br.com.alura.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Account {
@@ -11,10 +9,17 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String owner;
+
     private String number;
+
     private String bank;
+
     private String agency;
+
+    @OneToMany(mappedBy = "account")
+    private List<Movimentation> movimentations;
 
     public Integer getId() {
         return id;
@@ -56,6 +61,14 @@ public class Account {
         this.agency = agency;
     }
 
+    public List<Movimentation> getMovimentations() {
+        return movimentations;
+    }
+
+    public void setMovimentations(List<Movimentation> movimentations) {
+        this.movimentations = movimentations;
+    }
+
     @Override
     public String toString() {
         return "Account{" +
@@ -64,6 +77,7 @@ public class Account {
                 ", number='" + number + '\'' +
                 ", bank='" + bank + '\'' +
                 ", agency='" + agency + '\'' +
+                ", movimentationsSize=" + movimentations.size() +
                 '}';
     }
 }

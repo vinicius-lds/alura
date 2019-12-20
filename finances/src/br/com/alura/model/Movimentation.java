@@ -83,4 +83,17 @@ public class Movimentation {
     public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
+
+    @Override
+    public String toString() {
+        return "Movimentation{" +
+                "id=" + id +
+                ", value=" + value +
+                ", movimentationType=" + movimentationType +
+                ", date=" + date +
+                ", account=" + account +
+                ", categories=" + categories +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

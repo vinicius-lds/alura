@@ -32,6 +32,7 @@ public class AccountClientTest {
         em.persist(client2);
 
         em.getTransaction().commit();
+        em.close();
     }
 
 }
