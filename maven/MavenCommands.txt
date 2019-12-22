@@ -1,0 +1,42 @@
+#                      project name          base package                 assume all configs as default  exemple project (spring/hibernate/etc.)
+mvn archetype:generate -DartifactId=products -DgroupId=br.com.alura.maven -DinterctiveMode=false         -DarchetypeArtifactId=maven-archetype-quickstart
+mvn archetype:generate -DartifactId=store    -DgroupId=br.com.alura.maven -DinterctiveMode=false         -DarchetypeArtifactId=maven-archetype-webapp      -Dversion=1.0.0-SNAPSHOT
+
+# compiles the files inside the src/main/java folder
+mvn compile
+
+# compiles and runs the files inside the src/test/java folder
+mvn test
+
+# Deletes the target folder
+mvn clean
+
+# generates a HTML file with reports from the unit tests that were executed (the files is available under the folder target/site)
+mvn surefire-report:report
+
+# compiles, run tests and wraps all the .class files into a packaging of your choosing (configured in the pom.xml file).
+mvn package
+
+#        packaged sources to run   fully qualified name of Main file
+java -cp products-1.0-SNAPSHOT.jar br.com.alura.maven.App
+
+# executes the required command offline
+mvn -o <any commpand>
+
+# updates the pom with the lastest version of every dependency
+mvn versions:use-latest-versions
+
+# displays what dependencies have more recent versions
+mvn versions:display-dependency-updates
+
+# PMD commands
+    # generates a warning report for every possible bug on the project's code
+    mvn pmd:pmd
+
+    # fails the build if the report that checks for possibles bugs comes back not empty, this goals is executed in the verify phase
+    mvn pmd:check
+
+# Jetty commands
+    # runs jetty project on custom port
+    mvn -Djetty.http.port=9999 jetty:run
+
