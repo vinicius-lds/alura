@@ -1,4 +1,4 @@
-package br.com.alura.exceptions;
+package br.com.alura.exception;
 
 public class ConstructorInvocationException extends RuntimeException {
 

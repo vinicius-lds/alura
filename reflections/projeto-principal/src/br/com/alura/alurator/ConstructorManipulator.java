@@ -1,6 +1,6 @@
 package br.com.alura.alurator;
 
-import br.com.alura.exceptions.ConstructorInvocationException;
+import br.com.alura.exception.ConstructorInvocationException;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -17,9 +17,9 @@ public class ConstructorManipulator<T> {
         this.constructor = constructor;
     }
 
-    public T invoke() {
+    public ObjectManipulator<T> invoke() {
         try {
-            return constructor.newInstance();
+            return ObjectManipulator.of(constructor.newInstance());
         } catch (InstantiationException | IllegalAccessException e) {
             throw new ConstructorInvocationException("An excpetion occoured while invoking the constructor " + constructor.getName() + ".", e);
         } catch (InvocationTargetException e) {

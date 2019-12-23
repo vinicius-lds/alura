@@ -20,8 +20,12 @@ public class Main {
 
             var alurator = new Alurator("br.com.alura.controller");
             while (!url.equals("exit")) {
-                Object response = alurator.execute(url);
-                System.out.println("Response: " + response);
+                try {
+                    Object response = alurator.execute(url);
+                    System.out.println("Response: " + response);
+                } catch (RuntimeException e) {
+                    System.out.println(e.getMessage());
+                }
                 url = s.nextLine();
             }
         }

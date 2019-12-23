@@ -1,7 +1,5 @@
 package br.com.alura.alurator;
 
-import br.com.alura.exceptions.InvalidConstructorException;
-
 public class Alurator {
 
     private String basePackage;
@@ -10,18 +8,17 @@ public class Alurator {
         this.basePackage = basePackage;
     }
 
-    public Object execute(String url) throws ClassNotFoundException, InvalidConstructorException, NoSuchMethodException {
+    public Object execute(String url) {
         var request = new Request(url);
-        var clazz = Class.forName(ReflectionUtils.buildFullyQualifiedName(basePackage, request.getControllerClassName()));
-        var classManipulator = ClassManipulator.of(clazz);
-        var object = classManipulator.getDefaultConstructor().invoke();
-        var returnFromMethod = MethodManipulator.of(classManipulator.getMethod(request.getMethodName(), request.getParams()))
-                .withParams(request.getParams())
-                .withObject(object)
+        var fullyQualifiedName = ReflectionUtils.buildFullyQualifiedName(basePackage, request.getControllerClassName());
+
+        return ClassManipulator.of(fullyQualifiedName)
+                .getDefaultConstructor()
+                .invoke()
+                .getMethod(request.getMethodName(), request.getParams())
                 .withCatchClause((method, ex) -> System.out.println(method + "; " + ex))
-                .invoke();
-        System.out.println(returnFromMethod);
-        return null;
+                .invoke()
+                .toXml();
     }
 
 
