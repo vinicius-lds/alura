@@ -27,7 +27,7 @@
 
         <xstream.version>1.4.12</xstream.version>
         <lombok.version>1.18.12</lombok.version>
-        <junit.version>4.13</junit.version>
+        <junit.version>4.13.1</junit.version>
 
     </properties>
 
