@@ -25,7 +25,7 @@
         <maven.compiler.target>13</maven.compiler.target>
         <maven.compiler.source>13</maven.compiler.source>
 
-        <xstream.version>1.4.12</xstream.version>
+        <xstream.version>1.4.18</xstream.version>
         <lombok.version>1.18.12</lombok.version>
         <junit.version>4.13</junit.version>
 
